@@ -217,6 +217,12 @@
       However, if you used long polling, the *connection stays open* to SQS until a message has been found in SQS, or until the timeout (e.g. max 20s) is reached, e.g. If the message landed in the queue at 15s after the 1st LONG poll (0s), the message is returned to the client at 15s. If no message is received, the connection times out at 20s, and a new connection is established.
       (also, any timeout over 0s implies long polling)
 
+- Long polling occurs when the WaitTimeSeconds parameter of a ReceiveMessage request is set to a value greater than 0 in one of two ways:
+
+      The ReceiveMessage call sets WaitTimeSeconds to a value greater than 0.
+
+      The ReceiveMessage call doesn’t set WaitTimeSeconds, but the queue attribute ReceiveMessageWaitTimeSeconds is set to a value greater than 0.
+
 - The default visibility timeout for a message is 30 seconds. The maximum is 12 hours.
 
 - Unlike standard queues, FIFO queues don’t introduce duplicate messages. FIFO queues help you avoid sending duplicates to a queue. If you retry the SendMessage action within the 5-minute deduplication interval, Amazon SQS doesn’t introduce any duplicates into the queue.
