@@ -35,7 +35,9 @@
   - Cognito user pool -> To change password
   - Identity pool -> To access AWS services
 
-- you use GetSessionToken if you want to use MFA to protect programmatic calls to specific AWS API. The GetSessionToken API returns a set of temporary credentials for an AWS account or IAM user
+- The **user pool** manages the overhead of handling the tokens that are returned from social sign-in through Facebook, Google, Amazon, and Apple, and from **OpenID Connect (OIDC)** and **SAML IdPs**.
+
+- you use GetSessionToken if you want to use MFA to protect programmatic calls to specific AWS API. The GetSessionToken API returns a set of temporary credentials for an AWS account or IAM user.
 
 ## DynamoDB
 
@@ -59,7 +61,7 @@
 
       simplest, decoupled, and reliable method to get near-real time updates from the database
 
-- DynamoDB optionally supports conditional writes for these operations. A conditional write succeeds only if the item attributes meet one or more expected conditions. Otherwise, it returns an error. Conditional writes are helpful in many situations. For example, you might want a PutItem operation to succeed only if there is not already an item with the same primary key. Or you could prevent an UpdateItem operation from modifying an item if one of its attributes has a certain value.
+- DynamoDB optionally supports conditional writes for these operations. A conditional write succeeds only if the item attributes meet one or more expected conditions. Otherwise, it returns an error. **Conditional writes** are helpful in many situations. For example, you might want a PutItem operation to succeed only if there is not already an item with the same primary key. Or you could prevent an UpdateItem operation from modifying an item if one of its attributes has a certain value.
 
       Conditional writes are helpful in cases where multiple users attempt to modify the same item.
 
@@ -93,7 +95,14 @@
       NONE — no write capacity details are returned. (This is the default.)
 
 - **TransactWriteItems** is a synchronous and idempotent write operation that groups up to 25 write actions in a single all-or-nothing operation.
-  - A TransactWriteItems operation differs from a BatchWriteItem operation in that all the actions it contains must be completed successfully, or no changes are made at all. With a BatchWriteItem operation, it is possible that only some of the actions in the batch succeed while the others do not.
+  - A TransactWriteItems operation differs from a **BatchWriteItem** operation in that all the actions it contains must be completed successfully, or no changes are made at all. With a BatchWriteItem operation, it is possible that only some of the actions in the batch succeed while the others do not.
+
+- to optimize the scan operation the Developer should use parallel scans while limiting the rate as this will ensure that the scan operation does not affect the performance of production workloads and still have it complete in the minimum time.
+  - A parallel scan can be the right choice if the following conditions are met:
+
+    - The table size is 20 GB or larger.  
+    - The table's provisioned read throughput is not being fully used.  
+    - Sequential Scan operations are too slow.
 
 ## VPC
 
@@ -143,6 +152,7 @@
 - The default timeout for lambda is 3 seconds. The maximum allowed value is 900 seconds(15 min).
 
 - Create an event source mapping to tell Lambda to send records from your stream to a Lambda function. You can create multiple event source mappings to process the same data with multiple Lambda functions, or process items from multiple streams with a single function.
+  - The configuration of the event source mapping for stream-based services **DynamoDB, Kinesis and Amazon SQS** is made on the **Lambda side**.
 
 - For Lambda functions that process Kinesis or DynamoDB streams, **the number of shards is the unit of concurrency**. If your stream has 100 active shards, there will be at most 100 Lambda function invocations running concurrently. This is because Lambda processes each shard’s events in sequence.
 
@@ -159,6 +169,7 @@
 ## AWS CodeDeploy
 
 - A Developer is trying to deploy a serverless application using AWS CodeDeploy. The application was updated and needs to be redeployed. What file does the Developer need to update to push that change through CodeDeploy?- appspec.yml
+  - The application specification file (AppSpec file) is a YAML-formatted or JSON-formatted file used by CodeDeploy to manage a deployment. The AppSpec file defines the deployment actions you want AWS CodeDeploy to execute.
 
 ## Cloud watch
 
@@ -314,11 +325,11 @@
 - Annotations are simple key-value pairs that are indexed for use with filter expressions. Use annotations to record data that you want to use to group traces in the console, or when calling the GetTraceSummaries API. X-Ray indexes up to 50 annotations per trace.
 - Use annotations to record information on segments or subsegments that you want indexed for search.
 
-- Use X-Ray SDK to generate segment documents with subsegments and send them to the X-Ray daemon, which will buffer them and upload to the X-Ray API in batches- track including all the downstream calls made by the application to AWS resources
+- Use X-Ray SDK to generate segment documents with subsegments and send them to the X-Ray daemon, which will buffer them and upload to the X-Ray API in batches- track including all the **downstream** calls made by the application to AWS resources
 
 - A segment document can be up to 64 kB and contain a whole segment with subsegments, a fragment of a segment that indicates that a request is in progress, or a single subsegment that is sent separately. You can send segment documents directly to X-Ray by using the **PutTraceSegments** API. An alternative is, instead of sending segment documents to the X-Ray API, you can send segments and subsegments to an X-Ray daemon, which will buffer them and upload to the X-Ray API in batches. The X-Ray SDK sends segment documents to the daemon to avoid making calls to AWS directly
 
-- A trace segment is a JSON representation of a request that your application serves. A trace segment records information about the original request, information about the work that your application does locally, and subsegments with information about downstream calls that your application makes to AWS resources, HTTP APIs, and SQL databases.
+ information about the work that your application does locally, and subsegments with information about **downstream calls** that your application makes to AWS resources, HTTP APIs, and SQL databases.
 
 ## Amazon ElastiCache
 
