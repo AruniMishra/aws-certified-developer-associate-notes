@@ -25,6 +25,7 @@
     - [AWS Config](#aws-config)
     - [Quicksight](#quicksight)
     - [AWS Certificate Manager](#aws-certificate-manager)
+    - [AWS Secrets Manager](#aws-secrets-manager)
     - [SWF](#swf)
     - [Additional Point](#additional-point)
 
@@ -104,6 +105,8 @@
     - The table's provisioned read throughput is not being fully used.  
     - Sequential Scan operations are too slow.
 
+- The Amazon DynamoDB Encryption Client is a software library that helps you to protect your table data before you send it to Amazon DynamoDB. Encrypting your sensitive data in transit and at rest helps ensure that your plaintext data isn’t available to any third party, including AWS.
+  
 ## VPC
 
 - default route limit per VPC is 200.
@@ -263,6 +266,7 @@
 ## KMS
 
 - Data at rest == KMS, audit== KMS
+- KMS is used for encrypting data, not storing credentials.
 
 - Encryption
 
@@ -317,6 +321,8 @@
 
       spread – Place tasks evenly based on the specified value. Accepted values are attribute key-value pairs(such as attribute:ecs.availability-zone to balance tasks across zones), instanceId, or host.
 
+- cluster queries are expressions that enable you to group objects. For example, you can group container instances by attributes such as Availability Zone, instance type, or custom metadata.
+
 ## X Ray
 
 - Use the **GetTraceSummaries** API to get the list of trace IDs and annotations of the application and then retrieve the list of traces using **BatchGetTraces** API.
@@ -348,6 +354,10 @@
 ### AWS Certificate Manager
 
 - Although you can upload certificates to CloudFront, it doesn’t mean that you can import third-party SSL certificates on it. If you got your certificate from a third-party CA then you have to import the certificate into ACM or upload it to the IAM certificate store first. You would also not be able to export the certificate that you have loaded in CloudFront nor assign them to your EC2 or ELB instances as it would be tied to a single CloudFront distribution
+
+### AWS Secrets Manager
+
+- Secrets Manager is used for rotating credentials, not encryption keys
 
 ### SWF
 
