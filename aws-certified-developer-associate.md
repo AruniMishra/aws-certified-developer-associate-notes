@@ -21,6 +21,7 @@
   - [ECS](#ecs)
   - [X Ray](#x-ray)
   - [Amazon ElastiCache](#amazon-elasticache)
+  - [CloudFront](#cloudfront)
   - [Misc](#misc)
     - [AWS Config](#aws-config)
     - [Quicksight](#quicksight)
@@ -46,7 +47,7 @@
 
 - Enable DynamoDB Streams and set the value of StreamViewType to NEW_IMAGE. Use **Kinesis Adapter** in the application to consume streams from DynamoDB
 
-- If you enable DynamoDB Streams on a table, you can associate the stream ARN with a Lambda function that you write. Immediately after an item in the table is modified, a new record appears in the table’s stream. AWS Lambda polls the stream and invokes your Lambda function synchronously when it detects new stream records.
+- If you enable DynamoDB Streams on a table, you can associate the stream ARN with a Lambda function that you write. Immediately after an item in the table is modified, a new record appears in the table’s stream. AWS Lambda polls the stream and invokes your Lambda function **synchronously** when it detects new stream records.
 
 - a global secondary index (GSI) is primarily used if you want to query over the entire table, across all partitions. GSI only supports eventual consistency and not strong consistency.
 
@@ -341,6 +342,10 @@
 ## Amazon ElastiCache
 
 - Lazy Loading, as its name implies, is a caching strategy that loads data into the cache only when necessary.
+
+## CloudFront
+
+- which protocol is not supported- UDP
 
 ## Misc
 
