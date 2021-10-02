@@ -326,6 +326,7 @@
 ## X Ray
 
 - Use the **GetTraceSummaries** API to get the list of trace IDs and annotations of the application and then retrieve the list of traces using **BatchGetTraces** API.
+  - you can search for segments associated with specific users in the X-Ray console or by using the **GetTraceSummaries** API.
   - Use filter expressions via the X-Ray console in order to identify and filter out specific data from the trace.
 
 - Annotations are simple key-value pairs that are indexed for use with filter expressions. Use annotations to record data that you want to use to group traces in the console, or when calling the GetTraceSummaries API. X-Ray indexes up to 50 annotations per trace.
