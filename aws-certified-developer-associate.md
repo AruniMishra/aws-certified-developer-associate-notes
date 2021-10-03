@@ -308,7 +308,7 @@
       x-amz-server-side-encryption-customer-key-MD5 – This header provides the base64-encoded 128-bit MD5 digest of the encryption key according to RFC 1321. Amazon S3 uses this header for a message integrity check to ensure the encryption key was transmitted without error.
 
 - The value of **AES256** is only applicable for SSE-S3 and SSE-C
-- the correct method to upload files in the S3 bucket with SSE-KMS encryption is to include the x-amz-server-side-encryption header with a value of **aws:kms** in your upload request
+- the correct method to upload files in the S3 bucket with SSE-KMS encryption is to include the **x-amz-server-side-encryption** header with a value of **aws:kms** in your upload request
 
 ## ECS
 
