@@ -222,7 +222,7 @@
 
 - CodeDeploy provides two deployment type options, in-place deployments and blue/green deployments.
   - In-place deployment
-    - Only deployments that use the EC2/On-Premises compute platform can use in-place deployments. (AWS Lambda compute platform deployments cannot use an in-place deployment type.)
+    - Only deployments that use the EC2/On-Premises compute platform can use in-place deployments. (AWS Lambda compute platform deployments cannot use an in-place deployment type)
   - Blue/green deployment
     - Blue/green on an EC2/On-Premises compute platform
     - Blue/green on an AWS Lambda compute platform.
@@ -344,7 +344,9 @@
 
 - A segment document can be up to 64 kB and contain a whole segment with subsegments, a fragment of a segment that indicates that a request is in progress, or a single subsegment that is sent separately. You can send segment documents directly to X-Ray by using the **PutTraceSegments** API. An alternative is, instead of sending segment documents to the X-Ray API, you can send segments and subsegments to an X-Ray daemon, which will buffer them and upload to the X-Ray API in batches. The X-Ray SDK sends segment documents to the daemon to avoid making calls to AWS directly
 
- information about the work that your application does locally, and subsegments with information about **downstream calls** that your application makes to AWS resources, HTTP APIs, and SQL databases.
+ information about the work that your application does locally, and **subsegments with** information about **downstream calls** that your application makes to AWS resources, HTTP APIs, and SQL databases.
+
+ For services that don’t send their own segments like Amazon DynamoDB, X-Ray uses subsegments to generate inferred segments and downstream nodes on the service map.
 
 - AWS Elastic Beanstalk: Enable the X-Ray daemon by including the **xray-daemon.config** configuration file in the **.ebextensions** directory of your source code.
 
