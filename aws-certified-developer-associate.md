@@ -28,6 +28,7 @@
     - [AWS Certificate Manager](#aws-certificate-manager)
     - [AWS Secrets Manager](#aws-secrets-manager)
     - [SWF](#swf)
+    - [Amazon Aurora database](#amazon-aurora-database)
     - [Additional Point](#additional-point)
 
 ## IAM
@@ -39,7 +40,11 @@
 
 - The **user pool** manages the overhead of handling the tokens that are returned from social sign-in through Facebook, Google, Amazon, and Apple, and from **OpenID Connect (OIDC)** and **SAML IdPs**.
 
+- Amazon **Cognito identity pools** (federated identities) support user authentication through Amazon Cognito user pools, federated identity providers—including Amazon, Facebook, Google, and SAML identity providers—as well as **unauthenticated identities**. This feature also supports Developer Authenticated Identities (Identity Pools), which lets you register and authenticate users via your own back-end authentication process.
+
 - you use GetSessionToken if you want to use MFA to protect programmatic calls to specific AWS API. The GetSessionToken API returns a set of temporary credentials for an AWS account or IAM user.
+
+- A **resource policy** can be used to grant API access to one AWS account to users in a different AWS account using **Signature Version 4**
 
 ## DynamoDB
 
@@ -168,7 +173,7 @@
 
 - configuration files are YAML- or JSON-formatted documents with a .config file extension that you place in a folder named .ebextensions and deploy in your application source bundle-as the healthcheckurl.yaml file should be renamed to healthcheckurl.config file and placed in the .ebextensions directory to be picked up by Elastic Beanstalk.
 
-- You can define periodic tasks in a file named cron.yaml in your source bundle to add jobs to your worker environment’s queue automatically at a regular interval.
+- You can define periodic tasks in a file named **cron.yaml** in your source bundle to add jobs to your worker environment’s queue automatically at a regular interval.
 
 ## AWS CodeDeploy
 
@@ -252,8 +257,10 @@
 ## AppSync
 
 - AWS AppSync is a fully managed service that makes it easy to develop GraphQL APIs by handling the heavy lifting of securely connecting to data sources like AWS DynamoDB, Lambda, and more.
+
 - AWS AppSync simplifies application development by letting you create a flexible API to securely access, manipulate, and combine data from one or more data sources. AppSync is a managed service that uses GraphQL to make it easy for applications to get exactly the data they need.
-- allow multiple users to synchronize and collaborate in real time on shared data
+
+- allow **multiple users to synchronize and collaborate in real time** on shared data
 
 ## S3
 
@@ -339,6 +346,8 @@
 
  information about the work that your application does locally, and subsegments with information about **downstream calls** that your application makes to AWS resources, HTTP APIs, and SQL databases.
 
+- AWS Elastic Beanstalk: Enable the X-Ray daemon by including the **xray-daemon.config** configuration file in the **.ebextensions** directory of your source code.
+
 ## Amazon ElastiCache
 
 - Lazy Loading, as its name implies, is a caching strategy that loads data into the cache only when necessary.
@@ -374,6 +383,10 @@
 - Using **Timers** just enables you to notify your decider when a certain amount of time has elapsed.
 
 - Likewise, using **Tags** just enables you to filter the listing of the executions when you use the visibility operations.
+
+### Amazon Aurora database
+
+- **If a user copies an encrypted snapshot, the copy of the snapshot must also be encrypted**. If a user copies an encrypted snapshot across Regions, users cannot use the same AWS KMS encryption key for the copy as used for the source snapshot, because KMS keys are Region-specific. Instead, users must specify a KMS key that is valid in the destination Region.
 
 ### Additional Point
 
