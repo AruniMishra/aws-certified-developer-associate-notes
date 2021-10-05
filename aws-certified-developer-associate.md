@@ -331,6 +331,9 @@
 
 - cluster queries are expressions that enable you to group objects. For example, you can group container instances by attributes such as Availability Zone, instance type, or custom metadata.
 
+- To properly instrument your applications in Amazon ECS, you have to create a Docker image that runs the X-Ray daemon, upload it to a Docker image repository, and then deploy it to your Amazon ECS cluster. You can use **port mappings and network mode settings** in your task definition file to allow your application to communicate with the daemon container.
+The AWS X-Ray daemon is a software application that listens for traffic on **UDP port 2000**, gathers raw segment data, and relays it to the AWS X-Ray API. 
+
 ## X Ray
 
 - Use the **GetTraceSummaries** API to get the list of trace IDs and annotations of the application and then retrieve the list of traces using **BatchGetTraces** API.
