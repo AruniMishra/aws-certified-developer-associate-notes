@@ -224,10 +224,10 @@
   - In-place deployment
     - Only deployments that use the EC2/On-Premises compute platform can use in-place deployments. (AWS Lambda compute platform deployments cannot use an in-place deployment type)
   - Blue/green deployment
-    - Blue/green on an EC2/On-Premises compute platform
+    - Blue/green on an EC2/On-Premises compute platform.
     - Blue/green on an AWS Lambda compute platform.
-    - Blue/green on an Amazon ECS compute platform
-    - Blue/green deployments through AWS CloudFormation
+    - Blue/green on an Amazon ECS compute platform.
+    - Blue/green deployments through AWS CloudFormation.
 
 ## SQS
 
@@ -340,12 +340,14 @@ The AWS X-Ray daemon is a software application that listens for traffic on **UDP
   - you can search for segments associated with specific users in the X-Ray console or by using the **GetTraceSummaries** API.
   - Use filter expressions via the X-Ray console in order to identify and filter out specific data from the trace.
 
-- Annotations are simple key-value pairs that are indexed for use with filter expressions. Use annotations to record data that you want to use to group traces in the console, or when calling the GetTraceSummaries API. X-Ray indexes up to 50 annotations per trace.
+- **Annotations** are simple key-value pairs that are indexed for use with **filter** expressions. Use annotations to record data that you want to use to group traces in the console, or when calling the GetTraceSummaries API. X-Ray indexes up to 50 annotations per trace.
 - Use annotations to record information on segments or subsegments that you want indexed for search.
 
 - Use X-Ray SDK to generate segment documents with subsegments and send them to the X-Ray daemon, which will buffer them and upload to the X-Ray API in batches- track including all the **downstream** calls made by the application to AWS resources
 
-- A segment document can be up to 64 kB and contain a whole segment with subsegments, a fragment of a segment that indicates that a request is in progress, or a single subsegment that is sent separately. You can send segment documents directly to X-Ray by using the **PutTraceSegments** API. An alternative is, instead of sending segment documents to the X-Ray API, you can send segments and subsegments to an X-Ray daemon, which will buffer them and upload to the X-Ray API in batches. The X-Ray SDK sends segment documents to the daemon to avoid making calls to AWS directly
+- A segment document can be up to 64 kB and contain a whole segment with subsegments, a fragment of a segment that indicates that a request is in progress, or a single subsegment that is sent separately.
+  - You can send segment documents directly to X-Ray by using the **PutTraceSegments** API.
+  - An alternative is, instead of sending segment documents to the X-Ray API, you can send segments and subsegments to an X-Ray daemon, which will buffer them and upload to the X-Ray API in batches. The X-Ray SDK sends segment documents to the daemon to avoid making calls to AWS directly
 
  information about the work that your application does locally, and **subsegments with** information about **downstream calls** that your application makes to AWS resources, HTTP APIs, and SQL databases.
 
